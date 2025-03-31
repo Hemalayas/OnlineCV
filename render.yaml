@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: online-cv
+    runtime: dotnet
+    buildCommand: dotnet build
+    startCommand: dotnet OnlineCV.dll
+    publishPath: bin/Debug/net8.0
+    branch: main
+    plan: free
