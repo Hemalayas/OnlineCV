@@ -1,0 +1,76 @@
+﻿@model OnlineCV.Models.CVModel
+@{
+    ViewData["Title"] = "Karen Smith | Online CV";
+}
+
+@await Html.PartialAsync("_Header")
+
+<div style="max-width: 900px; margin: auto; font-family: Arial, sans-serif; padding: 30px;">
+    <h1>@Model.FullName</h1>
+    <h3>@Model.Title</h3>
+
+    <hr />
+
+    <section>
+        <h2>📞 Contact Information</h2>
+        <ul>
+            <li>Email: <a href="mailto:@Model.Contact.Email">@Model.Contact.Email</a></li>
+            <li>Phone: @Model.Contact.Phone</li>
+            <li>Location: @Model.Contact.Location</li>
+            <li>LinkedIn: <a href="@Model.Contact.LinkedIn" target="_blank">@Model.Contact.LinkedIn</a></li>
+            <li>Website: <a href="@Model.Contact.Website" target="_blank">@Model.Contact.Website</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>💼 Professional Summary</h2>
+        <p>@Model.Summary</p>
+    </section>
+
+    <section>
+        <h2>🧑‍💻 Work Experience</h2>
+        @foreach (var job in Model.WorkHistory)
+        {
+            <div style="margin-bottom: 15px;">
+                <strong>@job.JobTitle</strong> at <em>@job.Company</em><br />
+                <small>@job.StartDate – @job.EndDate</small>
+                <p>@job.Responsibilities</p>
+            </div>
+        }
+    </section>
+
+    <section>
+        <h2>🎓 Education</h2>
+        @foreach (var edu in Model.Education)
+        {
+            <div>
+                <strong>@edu.Degree</strong><br />
+                <em>@edu.Institution</em> - @edu.Year
+            </div>
+        }
+    </section>
+
+    <section>
+        <h2>🛠️ Technical Skills</h2>
+        <ul>
+            @foreach (var skill in Model.Skills)
+            {
+                <li>@skill</li>
+            }
+        </ul>
+    </section>
+
+    <section>
+        <h2>📂 Projects</h2>
+        @foreach (var project in Model.Projects)
+        {
+            <div style="margin-bottom: 15px;">
+                <strong>@project.Name</strong><br />
+                <p>@project.Description</p>
+                <a href="@project.GitHubLink" target="_blank">View on GitHub</a>
+            </div>
+        }
+    </section>
+</div>
+
+@await Html.PartialAsync("_Footer")
